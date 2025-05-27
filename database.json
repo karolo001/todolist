@@ -1,0 +1,15 @@
+[
+    {
+        "name" : "karol",
+        "surename" : "mazur", 
+        "email" : "karolmazur730@gmail.com"
+        
+    },
+
+    {
+        "name" : "kuba",
+        "surename" : "franczak",
+        "email" : "kfranczak22@gmail.com"        
+    }
+    
+]

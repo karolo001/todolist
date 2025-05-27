@@ -1,0 +1,128 @@
+*{
+    background-color: #ced4da;
+    color: rgb(11, 11, 11);
+    font-size: 25px;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    border: 0;
+    
+
+}
+#main {
+    width: 90%;
+    background-color: #dee2e6;
+    height: 85%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 7px 7px 15px 15px #6c757d;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+#footer {
+    width: 100%;
+    height: 10%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #212529;
+}
+h1{
+    width: auto;
+    height: 100%;
+    font-size: 40px;
+    background-color: transparent;
+    color: #e9ecef;
+    top: 50%;
+    
+
+}
+#buttons {
+    width: 100%;
+    height: 20%;
+    background-color: #6c757d;
+    display: flex;
+    flex-direction: row;
+
+}
+#but1, #but2 {
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border: 2px solid #212529;
+    border-top-width: 0;
+
+}
+#but1 {
+    border-right-width: 0;
+    border-left-width: 0;
+}
+#but2 {
+    border-right-width: 0;
+}
+#add, #delete {
+    width: 55%;
+    height: 50%;
+    background-color: #6c757d;
+    border-radius: 100px;
+    font-size: 35px;
+    box-shadow: 3px 3px 7px 1px rgb(27, 27, 27);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+#add.clicked, #delete.clicked {
+    transform: scale(1.2);
+}
+
+#tasks {
+    width: 100%;
+    height: 70%;
+    background-color: #6c757d;
+    overflow-y: auto;   
+
+}
+.task {
+    width: 100%;
+    height: 15%;
+    background-color: #495057;
+    text-align: left;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+}
+.topicPar, .datePar{
+    width: 60%;
+    height: 50%;
+    background-color: transparent;
+    font-size: 120%;
+    justify-content: center;
+    border-right-width: 2px;
+    border-right-color: #212529;
+    border-right: solid;
+    margin-left: 2%; /* 100 - (60 + 2 + 5 + 5)*/
+}
+.datePar {
+    margin-left: 5%;
+    padding-right: 5%;
+    width: auto
+
+}
+.edit {
+    margin-left: 4%;
+    background-image: url("edit.png");
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat;
+    height: 50%;
+    width: 4%;
+    background-color: transparent;
+    border: none;     
+    cursor: pointer;            
+
+}
