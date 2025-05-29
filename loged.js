@@ -8,6 +8,7 @@ class Task {
 
 let t1 = new Task("gowno", "jem", "2025-20-32");
 var Tasks = [t1];
+var mode = "edit";
 
 function addDelete() {
     const addButton = document.getElementById('add');
@@ -40,11 +41,73 @@ function addDelete() {
     })
     deleteButton.addEventListener('click', function () {
 
+        deleteTask();
         console.log("usuwam");
     })
+
+    const tasksQuery = document.querySelectorAll('.task');
+    const editQuery = document.querySelectorAll('.edit');
+
+    editQuery.forEach(edit => {
+        edit.addEventListener('click', function(e) {
+            if(mode != "deleting") {
+                e.stopPropagation();
+                console.log("klikneto edit");
+                console.log(this.id);
+                localStorage.setItem("MODE", "edit");
+            }
+        })
+    });
+
+    tasksQuery.forEach(task => {
+        task.addEventListener('click', function(e) {
+            console.log("klikneto zadanie z id ");
+            console.log(this.id);
+            localStorage.setItem("MODE", "show");
+
+        })
+    });
+
+
 }
 
-function addTask() {
+function deleteTask() {
+    for(let i = 0; i < Tasks.length; i++) {
+        const butt = document.getElementById(`edit${i + 1}`);
+        butt.style.backgroundImage = "url('recycle-bin.png')";
+    }
+    mode = "deleting";
+    const buttons = document.querySelectorAll('.edit');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            if(mode != "edit") {
+                e.stopPropagation();
+                console.log(this.id);
+                console.log(mode);  
+
+                let id = this.id;
+                let lastSign = '';
+                for(let i = 4; i < id.length; i++ ) {
+                    lastSign += id[i];
+                }
+                console.log(lastSign);
+                let toDelete = "task" + lastSign;
+                const divToDelete = document.getElementById(toDelete);
+                divToDelete.remove();
+                Tasks.splice(Number(lastSign) - 1 ,1);
+                console.log(Tasks);
+                mode = "edit";
+                 for(let i = 0; i < Tasks.length; i++) {
+                    const butt = document.getElementById(`edit${i + 1}`);
+                    butt.style.backgroundImage = "url('edit.png')";
+                }
+
+            }
+
+            
+        })
+
+    })
 
 
 }
@@ -72,30 +135,15 @@ function writeTasks() {
         let topicToWrite = Tasks[i].topic;
         let descriptionToWrite = Tasks[i].description;
         let dateToWrite = Tasks[i].date;
-        tasksContainer.innerHTML += `<div id="task${i + 1}" class="task" > <p id="topicPar${i + 1}" class="topicPar" >${topicToWrite}</p> <p id="datePar${i + 1}" class="datePar" >${dateToWrite}</p> <button id="edit1" class="edit" ></button> </div>`
+        tasksContainer.innerHTML += `<div id="task${i + 1}" class="task" > <p id="topicPar${i + 1}" class="topicPar" >${topicToWrite}</p> <p id="datePar${i + 1}" class="datePar" >${dateToWrite}</p> <button id="edit${i + 1}" class="edit" ></button> </div>`
 
     }
-    const tasksQuery = document.querySelectorAll('.task');
-    const editQuery = document.querySelectorAll('.edit');
-
-    editQuery.forEach(edit => {
-        edit.addEventListener('click', function(e) {
-            e.stopPropagation();
-            console.log("klikneto edit");
-            console.log(this.id);
-        })
-    });
-
-    tasksQuery.forEach(task => {
-        task.addEventListener('click', function(e) {
-            console.log("klikneto zadanie z id ");
-            console.log(this.id);
-
-        })
-    });
-
 
 }
+
+document.addEventListener('click', function() {
+    console.log(mode);
+})
 
 writeTasks();
 addDelete()
