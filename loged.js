@@ -63,7 +63,18 @@ function addDelete() {
         task.addEventListener('click', function(e) {
             console.log("klikneto zadanie z id ");
             console.log(this.id);
+            let id = this.id;
+            let lastSign = '';
+            for(let i = 4; i < id.length; i++ ) {
+                lastSign += id[i];
+            }
+
             localStorage.setItem("MODE", "show");
+            localStorage.setItem("DATE", Tasks[Number(lastSign) - 1].date);
+            localStorage.setItem("DESCRIPTION", Tasks[Number(lastSign) - 1].description);
+            localStorage.setItem("TOPIC", Tasks[Number(lastSign) - 1].topic);
+
+            window.location.href = "showTask.html";
 
         })
     });
@@ -102,7 +113,7 @@ function deleteTask() {
                     butt.style.backgroundImage = "url('edit.png')";
                 }
 
-            }
+            } 
 
             
         })
@@ -142,6 +153,8 @@ function writeTasks() {
 }
 
 document.addEventListener('click', function() {
+    
+
     console.log(mode);
 })
 
