@@ -1,0 +1,23 @@
+[
+    {
+        "name" : "karol",
+        "surename" : "mazur",
+        "email" : "karolmazur730@gmail.com",
+        "password" : "Lolek123;",
+        "tasks" :
+        [
+            {
+                "topic" : "zakupy",
+                "date" : "06.06.2025",
+                "description" : "zrob zakupy idioto"
+            } ,
+
+            {
+                "topic" : "robota",
+                "date" : "04.06.2025",
+                "description" : "znajdz prace"
+            }
+        ]
+
+    }
+]
