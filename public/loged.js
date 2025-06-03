@@ -6,8 +6,7 @@ class Task {
     }
 }
 
-let t1 = new Task("gowno", "jem", "2025-20-32");
-var Tasks = [t1];
+var Tasks = [];
 var mode = "edit";
 
 function addDelete() {
