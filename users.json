@@ -1,23 +1,66 @@
 [
-    {
-        "name" : "karol",
-        "surename" : "mazur",
-        "email" : "karolmazur730@gmail.com",
-        "password" : "Lolek123;",
-        "tasks" :
-        [
-            {
-                "topic" : "zakupy",
-                "date" : "06.06.2025",
-                "description" : "zrob zakupy idioto"
-            } ,
-
-            {
-                "topic" : "robota",
-                "date" : "04.06.2025",
-                "description" : "znajdz prace"
-            }
-        ]
-
-    }
+  {
+    "name": "karol",
+    "surename": "mazur",
+    "email": "karolmazur730@gmail.com",
+    "password": "Lolek123;",
+    "tasks": [
+      {
+        "topic": "zakupy",
+        "date": "06.06.2025",
+        "description": "zrob zakupy idioto"
+      },
+      {
+        "topic": "robota",
+        "date": "04.06.2025",
+        "description": "znajdz prace"
+      },
+      {
+        "topic": "asfasf",
+        "date": "2025-06-23",
+        "description": "asf"
+      }
+    ]
+  },
+  {
+    "name": "kuba",
+    "surename": "franczak",
+    "email": "kubafranczak730@gmail.com",
+    "password": "Lolek12345;",
+    "tasks": [
+      {
+        "topic": "lodzik",
+        "date": "06.06.2025",
+        "description": "zrob loda mazurowi"
+      },
+      {
+        "topic": "chuj",
+        "date": "04.06.2025",
+        "description": "ci w dupe"
+      },
+      {
+        "topic": "jebac",
+        "date": "2025-06-19",
+        "description": "bartka"
+      }
+    ]
+  },
+  {
+    "name": "sigma",
+    "surename": "boy",
+    "email": "admin",
+    "password": "Lolek12345;",
+    "tasks": [
+      {
+        "topic": "zrobic zakupy",
+        "date": "2025-06-25",
+        "description": "chuj w dupe"
+      },
+      {
+        "topic": "xd",
+        "date": "2025-06-23",
+        "description": "xddd"
+      }
+    ]
+  }
 ]

@@ -46,6 +46,7 @@ function addDelete() {
 
     const tasksQuery = document.querySelectorAll('.task');
     const editQuery = document.querySelectorAll('.edit');
+    
 
     editQuery.forEach(edit => {
         edit.addEventListener('click', function(e) {
@@ -72,6 +73,7 @@ function addDelete() {
             localStorage.setItem("DATE", Tasks[Number(lastSign) - 1].date);
             localStorage.setItem("DESCRIPTION", Tasks[Number(lastSign) - 1].description);
             localStorage.setItem("TOPIC", Tasks[Number(lastSign) - 1].topic);
+            localStorage.setItem("TASKID", Number(lastSign) - 1);
 
             window.location.href = "showTask.html";
 
@@ -122,23 +124,45 @@ function deleteTask() {
 
 }
 function writeTasks() {
-    let topic = localStorage.getItem("TOPIC");
-    let description = localStorage.getItem("DESCRIPTION");
-    let date = localStorage.getItem("DATE")
+    var tasksFromJson = [];
+    fetch('/api/getData', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+                
+        body: JSON.stringify({"id" : localStorage.getItem("DBID")})
+        
+        
+    }) 
+    .then(res => res.json())
+    .then(data => {
+        if(data.success) {
+            console.log("zalgowano");
+            tasksFromJson = data["tasks"];
+            for(let i  = 0; i < tasksFromJson.length; i++) {
+                let topicFromJson = tasksFromJson[i]["topic"];
+                let dateFromJson = tasksFromJson[i]["date"];
+                let DescriptionFromJson = tasksFromJson[i]["description"];
+                let t1 = new Task(topicFromJson, DescriptionFromJson, dateFromJson);
+                Tasks.push(t1);
+                console.log(t1);
+            }
 
-    console.log([
-        "localstrogae: ",
-        topic,
-        date,
-        description
-    ])
+        } else {
+            alert("zle dane sprobuj jeszcze raz");
+        }
+    })
+    .then(() => writeTaskDiv())
+    .then(() => addDelete())
 
-    if(topic != null && date != null && description != null && topic.length > 0 && date.length > 0 && description.length > 0) {
-        let t1 = new Task(topic, description, date);
-        Tasks.push(t1);
-        console.log(Tasks);
-    }
+    .catch(err => {
+        console.log("error");
+    });
+
+    console.log(tasksFromJson);
+}
+function writeTaskDiv() {
     for(let i = 0; i < Tasks.length; i++) {
+        
         console.log([Tasks[i].topic, Tasks[i].description, Tasks[i].date]);
     }
     const tasksContainer = document.getElementById('tasks');
@@ -152,11 +176,5 @@ function writeTasks() {
 
 }
 
-document.addEventListener('click', function() {
-    
-
-    console.log(mode);
-})
 
 writeTasks();
-addDelete()

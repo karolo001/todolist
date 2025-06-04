@@ -63,40 +63,6 @@ class PersonToRegister extends Person {
         this.name = name;
         this.surename = surename;
     }
-    isPasswordValid() {
-        let specialSigns = '!@#$%^&*()_-+=}]{[|":;>.<,?/~`';
-        let passwordString = this.password;
-        let isThereSpecialSign = false;
-        let isThereBigLetters = false;
-
-        if(passwordString.length < 8) 
-            return false;
-        console.log(1);
-        for (let i = 0; i < passwordString.length; i++) {
-            if ( passwordString[i] === passwordString[i].toUpperCase() &&
-                                    /^[A-Z]$/.test(passwordString[i])
-                ) {
-                isThereBigLetters = true;
-                break;
-            }
-        }
-        console.log(2)
-        if(!isThereBigLetters)
-            return false;
-
-        for(let i = 0; i < specialSigns.length; i++) {
-            if( passwordString.includes(specialSigns[i])) {
-                isThereSpecialSign = true;
-                break;
-            }
-        }
-        console.log(3)
-        if(!isThereSpecialSign)
-            return false;
-
-        return true;
-
-    }
     greet() {
         console.log([this.email, this.password, this.name, this.surename]);
     }
@@ -116,30 +82,63 @@ function LoginRegister() {
             const passwordInput = document.getElementById('password');
             const email = emailInput.value;
             const password = passwordInput.value;
-            console.log(email);
-            fetch('/api/login', {
-            method: 'POST', // ← KLUCZOWE
-            headers: {
-                'Content-Type': 'application/json'
-            },
             
-            body: JSON.stringify({ email, password })
-            
-            })
-            .catch(err => {
-                console.log("error");
-            });
+            if(email.length > 0 && password.length > 0 ) {
 
+                fetch('/api/login', {
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json'},
+                    
+                    body: JSON.stringify({ email, password })
+                
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success) {
+                        console.log("zalgowano");
+                        LogIn(email, password, data.ID);
+                        console.log(data);
+                    } else {
+                        alert("zle dane sprobuj jeszcze raz");
+                    }
+                })
+
+                .catch(err => {
+                    console.log("error");
+                });
+            }
         } else if(mode === "Register") {
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
             const nameInput = document.getElementById('name');
             const surenameInput = document.getElementById('surename');
-            Register(emailInput.value, passwordInput.value, nameInput.value, surenameInput.value);
-        } else {
-            console.error("blad");
-        }
-        
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            const name = nameInput.value;
+            const surename = surenameInput.value;
+
+            if(email.length > 0 && password.length > 0 && name.length > 0 && surename.length > 0) {
+
+                fetch('/api/register', {
+
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json'},   
+                    body: JSON.stringify({ email, password, name, surename })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.successRegister) {
+                        alert("pomyslnie zalgowano");
+                        Register(email, password, name, surename);
+                    } else {
+                        alert("pojawil sie jakis blad");
+                    }
+                })
+
+                } else {
+                    console.error("blad");
+                }
+            }     
     });
 
 }
@@ -177,24 +176,19 @@ function changeMode() {
     })
 }
 
-function isLoginValid(email, password) {
-    return true;
-}
-function isRegisterValid(email, password, name, surename) {
-    return true;
-}
-
-function LogIn(email, password) {
+function LogIn(email, password, id) {
     var User = new PersonToLogin(email, password);
     User.greet();
     localStorage.setItem("USER", email);
+    localStorage.setItem("DBID", id);
     window.location.href = "loged.html";
-
 
 }
 function Register(email, password, name, surename) {
     var User = new PersonToRegister(email, password, name, surename);
     User.greet();
+    alert("zarejestowano pomyslnie");
+    window.location = "loged.html";
 
 }
 
