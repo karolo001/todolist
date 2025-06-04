@@ -114,8 +114,22 @@ function LoginRegister() {
         if(mode === "Login") {
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
-            if(isLoginValid(emailInput.value, passwordInput.value))
-                LogIn(emailInput.value, passwordInput.value);
+            const email = emailInput.value;
+            const password = passwordInput.value;
+            console.log(email);
+            fetch('/api/login', {
+            method: 'POST', // ← KLUCZOWE
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            
+            body: JSON.stringify({ email, password })
+            
+            })
+            .catch(err => {
+                console.log("error");
+            });
+
         } else if(mode === "Register") {
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');

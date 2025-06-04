@@ -132,7 +132,8 @@ function writeTasks() {
         date,
         description
     ])
-    if(topic.length > 0 && date.length > 0 && description.length > 0) {
+
+    if(topic != null && date != null && description != null && topic.length > 0 && date.length > 0 && description.length > 0) {
         let t1 = new Task(topic, description, date);
         Tasks.push(t1);
         console.log(Tasks);
