@@ -83,15 +83,27 @@ app.post('/api/register', (req, res) => {
     
     try {
         var users = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
-        const valid = isPasswordValid(password);
-        if(valid) {
+        const validPassword = isPasswordValid(password);
+        const validemail = true;
+
+        for(let i = 0; i < users.length; i++) {
+            if(email === users[i]["email"]) {
+                validemail = false;
+                break;
+            }
+        }
+
+        if(validPassword) {
             let newUser = {name, surename, email, password, "tasks" : []}
             users.push(newUser);
             fs.writeFileSync(jsonPath, JSON.stringify(users, null, 2), 'utf-8');
             res.json({successRegister : true});
+        } else if(!validemail) {
+            console.log("taki mail juz istnieje")
+            res.json({successRegister : false, messageMail : "taki mail istnieje"});
         } else {
             console.log("haslo nie spelnia zalecen");
-            res.json({successRegister : false});
+            res.json({successRegister : false, messagePassword : "takie haslo istnieje"});
         }
 
     } catch(err) {
@@ -130,11 +142,22 @@ app.post('/api/addTask', (req, res) => {
 })
 
 app.post('/api/deleteTask', (req, res) => {
-    const jsonPath = path.join(__dirname + 'users.json');
-    const {id} = req.body;
+    const jsonPath = path.join(__dirname, 'users.json');
+    const {id, userID} = req.body;
     var dataBase = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
-
+    try{
+        console.log(req.body);
+        console.log(dataBase[userID].tasks[id]);
+        dataBase[userID].tasks.splice(id - 1, 1);
+        fs.writeFileSync(jsonPath, JSON.stringify(dataBase, null, 2));
+        res.json({success : true});
+        console.log("usunieto zadnaie");
+    } catch(err) {
+        console.log("blad i chuj");
+    }
+        
+    
 })
 
 

@@ -102,6 +102,7 @@ function LoginRegister() {
                         alert("zle dane sprobuj jeszcze raz");
                     }
                 })
+                
 
                 .catch(err => {
                     console.log("error");
@@ -131,13 +132,19 @@ function LoginRegister() {
                         alert("pomyslnie zalgowano");
                         Register(email, password, name, surename);
                     } else {
-                        alert("pojawil sie jakis blad");
+                        if(data.messageMail.length > 0) {
+                            console.log("zly mail");
+                        } else if(data.messagePassword.length > 0) {
+                            console.log("zle haslo");
+                        }
                     }
                 })
 
+                .then(window.location.href = "index.html");
                 } else {
                     console.error("blad");
                 }
+                
             }     
     });
 

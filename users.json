@@ -50,17 +50,6 @@
     "surename": "boy",
     "email": "admin",
     "password": "Lolek12345;",
-    "tasks": [
-      {
-        "topic": "zrobic zakupy",
-        "date": "2025-06-25",
-        "description": "chuj w dupe"
-      },
-      {
-        "topic": "xd",
-        "date": "2025-06-23",
-        "description": "xddd"
-      }
-    ]
+    "tasks": []
   }
 ]

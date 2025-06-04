@@ -103,6 +103,18 @@ function deleteTask() {
                     lastSign += id[i];
                 }
                 console.log(lastSign);
+                fetch('/api/deleteTask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json'},
+                    body : JSON.stringify({"id" : Number(lastSign), "userID" : localStorage.getItem("DBID")})
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success) {
+                        console.log("usunieto");
+                    }
+                })
+
                 let toDelete = "task" + lastSign;
                 const divToDelete = document.getElementById(toDelete);
                 divToDelete.remove();
