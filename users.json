@@ -1,56 +1,10 @@
 [
   {
-    "name": "karol",
-    "surename": "mazur",
+    "name": "Karol",
+    "surename": "Mazur",
     "email": "karolmazur730@gmail.com",
     "password": "Lolek123;",
-    "tasks": [
-      {
-        "topic": "zakupy",
-        "date": "06.06.2025",
-        "description": "zrob zakupy idioto"
-      },
-      {
-        "topic": "chuj dupa",
-        "date": "2025-06-24",
-        "description": "siema"
-      }
-    ]
-  },
-  {
-    "name": "kuba",
-    "surename": "franczak",
-    "email": "kubafranczak730@gmail.com",
-    "password": "Lolek12345;",
-    "tasks": [
-      {
-        "topic": "lodzik",
-        "date": "06.06.2025",
-        "description": "zrob loda mazurowi"
-      },
-      {
-        "topic": "chuj",
-        "date": "04.06.2025",
-        "description": "ci w dupe"
-      },
-      {
-        "topic": "jebac",
-        "date": "2025-06-19",
-        "description": "bartka"
-      }
-    ]
-  },
-  {
-    "name": "sigma",
-    "surename": "boy",
-    "email": "admin",
-    "password": "Lolek12345;",
-    "tasks": [
-      {
-        "topic": "sdfsdf",
-        "date": "2025-06-04",
-        "description": "sdafasdf"
-      }
-    ]
+    "tasks": []
   }
+
 ]

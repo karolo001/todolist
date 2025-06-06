@@ -41,34 +41,6 @@ function passwordVisible() {
     })
 
 }
-class Person {
-
-    constructor(email, password) {
-        this.email = email;
-        this.password = password;
-    }
-
-}
-class PersonToLogin extends Person {
-    constructor(email, password) {
-        super(email, password);
-    }
-    greet() {
-        console.log([this.email, this.password])
-    }
-}
-class PersonToRegister extends Person {
-    constructor(email, password, name, surename,) {
-        super(email, password);
-        this.name = name;
-        this.surename = surename;
-    }
-    greet() {
-        console.log([this.email, this.password, this.name, this.surename]);
-    }
-
-
-}
 
 function LoginRegister() {
     const loginRegisterButton = document.getElementById('loginRegisterButton'); 
@@ -93,10 +65,15 @@ function LoginRegister() {
                 .then(data => {
                     if(data.success) {
                         console.log("zalgowano");
-                        LogIn(email, password, data.ID);
                         console.log(data);
+
+                        localStorage.setItem("USER", email);
+                        localStorage.setItem("DBID", data.ID);
+                        window.location.href = "loged.html";        
+
                     } else {
                         alert("zle dane sprobuj jeszcze raz");
+
                     }
                 })
                 
@@ -126,7 +103,7 @@ function LoginRegister() {
                 .then(res => res.json())
                 .then(data => {
                     if(data.successRegister) {
-                        alert("pomyslnie zalgowano");
+                        alert("pomyslnie zarejestorwano");
                         Register(email, password, name, surename);
                     } else {
                         if(data.messageMail.length > 0) {
@@ -180,21 +157,6 @@ function changeMode() {
     })
 }
 
-function LogIn(email, password, id) {
-    var User = new PersonToLogin(email, password);
-    User.greet();
-    localStorage.setItem("USER", email);
-    localStorage.setItem("DBID", id);
-    window.location.href = "loged.html";
-
-}
-function Register(email, password, name, surename) {
-    var User = new PersonToRegister(email, password, name, surename);
-    User.greet();
-    alert("zarejestowano pomyslnie");
-    window.location = "loged.html";
-
-}
 
 changeMode();
 passwordVisible();
