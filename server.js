@@ -103,7 +103,7 @@ app.post('/api/register', (req, res) => {
             res.json({successRegister : false, messageMail : "taki mail istnieje"});
         } else {
             console.log("haslo nie spelnia zalecen");
-            res.json({successRegister : false, messagePassword : "takie haslo istnieje"});
+            res.json({successRegister : false, messagePassword : "haslo nie spelnia zlecen"});
         }
 
     } catch(err) {
@@ -133,7 +133,6 @@ app.post('/api/addTask', (req, res) => {
     const dataPath = path.join(__dirname, 'users.json');
     const {id, topic, date, description} = req.body;
     const jsonPath = path.join(__dirname, 'users.json');
-
     var tasks = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
     let t1 =  { topic, date, description }
@@ -154,7 +153,7 @@ app.post('/api/deleteTask', (req, res) => {
         res.json({success : true});
         console.log("usunieto zadnaie");
     } catch(err) {
-        console.log("blad i chuj");
+        console.log("blad");
     }
         
     

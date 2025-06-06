@@ -127,7 +127,6 @@ function deleteTask() {
                 }
 
             } 
-
             
         })
 
@@ -138,9 +137,9 @@ function deleteTask() {
 function writeTasks() {
     var tasksFromJson = [];
     fetch('/api/getData', {
+        
         method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-                
+        headers: { 'Content-Type': 'application/json'},      
         body: JSON.stringify({"id" : localStorage.getItem("DBID")})
         
         

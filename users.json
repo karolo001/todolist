@@ -11,14 +11,9 @@
         "description": "zrob zakupy idioto"
       },
       {
-        "topic": "robota",
-        "date": "04.06.2025",
-        "description": "znajdz prace"
-      },
-      {
-        "topic": "asfasf",
-        "date": "2025-06-23",
-        "description": "asf"
+        "topic": "chuj dupa",
+        "date": "2025-06-24",
+        "description": "siema"
       }
     ]
   },
@@ -50,6 +45,12 @@
     "surename": "boy",
     "email": "admin",
     "password": "Lolek12345;",
-    "tasks": []
+    "tasks": [
+      {
+        "topic": "sdfsdf",
+        "date": "2025-06-04",
+        "description": "sdafasdf"
+      }
+    ]
   }
 ]

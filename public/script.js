@@ -71,10 +71,7 @@ class PersonToRegister extends Person {
 }
 
 function LoginRegister() {
-    const loginRegisterButton = document.getElementById('loginRegisterButton');
-    var email;
-    var password;
-    
+    const loginRegisterButton = document.getElementById('loginRegisterButton'); 
 
     loginRegisterButton.addEventListener('click', function() {
         if(mode === "Login") {
