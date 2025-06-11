@@ -4,7 +4,12 @@
     "surename": "Mazur",
     "email": "karolmazur730@gmail.com",
     "password": "Lolek123;",
-    "tasks": []
+    "tasks": [
+      {
+        "topic": "asdf",
+        "date": "2025-06-10",
+        "description": "sdfqsdfg"
+      }
+    ]
   }
-
 ]

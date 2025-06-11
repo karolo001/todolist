@@ -55,6 +55,21 @@ function addDelete() {
                 console.log("klikneto edit");
                 console.log(this.id);
                 localStorage.setItem("MODE", "edit");
+                 let id = this.id;
+                let lastSign = '';
+                for(let i = 4; i < id.length; i++ ) {
+                    lastSign += id[i];
+                }
+
+                localStorage.setItem("MODE", "show");
+                localStorage.setItem("DATE", Tasks[Number(lastSign) - 1].date);
+                localStorage.setItem("DESCRIPTION", Tasks[Number(lastSign) - 1].description);
+                localStorage.setItem("TOPIC", Tasks[Number(lastSign) - 1].topic);
+                localStorage.setItem("TASKID", Number(lastSign) - 1);
+
+                window.location.href = "editTask.html";
+
+
             }
         })
     });

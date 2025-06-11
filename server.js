@@ -158,6 +158,20 @@ app.post('/api/deleteTask', (req, res) => {
         
     
 })
+app.post('/api/editTask', (req, res) => {
+    const jsonPath = path.join(__dirname, 'users.json');
+    const {id, userID, newDescription} = req.body;
+    var dataBase = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+
+    try {
+        console.log(dataBase[userID].tasks[id]["description"]);
+        res.json({success : true});
+
+    } catch(err) {
+        console.log("blad przy edytowaniu taska");
+    }
+
+})
 
 
 
