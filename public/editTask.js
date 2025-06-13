@@ -19,11 +19,7 @@ comeBack.addEventListener('click', function() {
         fetch('/api/editTask', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},      
-            body: JSON.stringify({"id" : localStorage.getItem("TASKID"), "userID" : localStorage.getItem("DBID"), "newDescription" : newDescription})
-        })
-         .then(async res => {
-            const text = await res.text();
-            console.log("ODPOWIEDŹ Z SERWERA:", text);
+            body: JSON.stringify({"taskID" : localStorage.getItem("TASKID"), "userID" : localStorage.getItem("DBID"), "newDescription" : newDescription})
         })
         .then(res => res.json())
         .then(data => {

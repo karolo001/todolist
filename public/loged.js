@@ -107,7 +107,7 @@ function deleteTask() {
     const buttons = document.querySelectorAll('.edit');
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
-            if(mode != "edit") {
+            if(mode !== "edit") {
                 e.stopPropagation();
                 console.log(this.id);
                 console.log(mode);  

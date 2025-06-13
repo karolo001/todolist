@@ -117,6 +117,7 @@ app.post('/api/getData', (req, res) => {
     var user = req.body;
     const jsonPath = path.join(__dirname, 'users.json');
     try {
+        console.log("zdobywam dane");
         const users = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
         const tasks = users[user["id"]]["tasks"];
         console.log(tasks);
@@ -146,6 +147,8 @@ app.post('/api/deleteTask', (req, res) => {
     var dataBase = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
     try{
+        
+        console.log("usuwam");
         console.log(req.body);
         console.log(dataBase[userID].tasks[id]);
         dataBase[userID].tasks.splice(id - 1, 1);
@@ -160,11 +163,15 @@ app.post('/api/deleteTask', (req, res) => {
 })
 app.post('/api/editTask', (req, res) => {
     const jsonPath = path.join(__dirname, 'users.json');
-    const {id, userID, newDescription} = req.body;
+    const {taskID, userID, newDescription} = req.body;
     var dataBase = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
     try {
-        console.log(dataBase[userID].tasks[id]["description"]);
+        let taskIDnumber = parseInt(taskID);
+        let userIDnumber = parseInt(userID);
+        console.log("nowy opis" + newDescription);
+        dataBase[userIDnumber]["tasks"][taskIDnumber]["description"] = newDescription;
+        fs.writeFileSync(jsonPath, JSON.stringify(dataBase, null, 2));
         res.json({success : true});
 
     } catch(err) {
