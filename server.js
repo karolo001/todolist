@@ -146,7 +146,7 @@ app.post('/api/deleteTask', (req, res) => {
     var dataBase = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
 
     try{
-        console.log(req.body);
+        
         console.log(dataBase[userID].tasks[id]);
         dataBase[userID].tasks.splice(id - 1, 1);
         fs.writeFileSync(jsonPath, JSON.stringify(dataBase, null, 2));
@@ -160,12 +160,21 @@ app.post('/api/deleteTask', (req, res) => {
 })
 app.post('/api/editTask', (req, res) => {
     const jsonPath = path.join(__dirname, 'users.json');
-    const {id, userID, newDescription} = req.body;
+    const {userid, taskid, newDescription} = req.body;
     var dataBase = JSON.parse(fs.readFileSync(jsonPath, 'utf-8'));
+    console.log(userid);
+    console.log(taskid);
+    console.log(newDescription);
 
     try {
-        console.log(dataBase[userID].tasks[id]["description"]);
+        tID = parseInt(taskid, 10);
+        uID = parseInt(userid, 10);
+        
+
+        dataBase[uID]["tasks"][tID]["description"] = newDescription;
+        fs.writeFileSync(jsonPath, JSON.stringify(dataBase, null, 2));
         res.json({success : true});
+        console.log("zmodyfikowano");
 
     } catch(err) {
         console.log("blad przy edytowaniu taska");
